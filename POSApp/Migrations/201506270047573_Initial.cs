@@ -3,7 +3,7 @@ namespace POSApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddFieldAndDataAnotations : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -19,22 +19,20 @@ namespace POSApp.Migrations
                     })
                 .PrimaryKey(t => t.ProductID);
             
-            DropTable("dbo.ProductModels");
+            CreateTable(
+                "dbo.UnitOfMeasurements",
+                c => new
+                    {
+                        MeasureID = c.Int(nullable: false, identity: true),
+                        MeasureCode = c.String(maxLength: 10),
+                    })
+                .PrimaryKey(t => t.MeasureID);
+            
         }
         
         public override void Down()
         {
-            CreateTable(
-                "dbo.ProductModels",
-                c => new
-                    {
-                        ProductID = c.Int(nullable: false, identity: true),
-                        ProductName = c.String(nullable: false),
-                        ProductPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        CreatedDate = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.ProductID);
-            
+            DropTable("dbo.UnitOfMeasurements");
             DropTable("dbo.Products");
         }
     }

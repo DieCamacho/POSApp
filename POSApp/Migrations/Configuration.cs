@@ -28,6 +28,7 @@ namespace POSApp.Migrations
             //    );
             //
 
+
             context.Products.AddOrUpdate(i => i.ProductID,
                 new Products
                 {
@@ -35,6 +36,14 @@ namespace POSApp.Migrations
                     ProductPrice = 100.0M,
                     CreatedDate = DateTime.Now,
                     Rating = "ABCDE"
+                });
+
+
+            context.UnitOfMeasurements.AddOrUpdate(i => i.MeasureID,
+                new UnitOfMeasurements
+                {
+                    MeasureID = 1,
+                    MeasureCode = "S"
                 });
         }
     }

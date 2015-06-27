@@ -9,5 +9,6 @@ namespace POSApp.Models
     public class PosDBContext : DbContext
     {
         public DbSet<Products> Products { get; set; }
+        public DbSet<UnitOfMeasurements> UnitOfMeasurements { get; set; }
     }
 }
